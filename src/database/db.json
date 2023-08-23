@@ -1,0 +1,18 @@
+{
+  "users": [
+    {
+      "_id": "ns)aCqb%b0TD4Or",
+      "name": "abc",
+      "email": "abc@gmail.com",
+      "password": "$2a$10$Lb/hmS7NuFF60HKYiWNRDeWCHp5U8IW23NacxUUN/Fn4EmF/gLIY.",
+      "isBlocked": false
+    },
+    {
+      "_id": "60gzmgK^LV%s0%p",
+      "name": "musab ",
+      "email": "musab@email.com",
+      "password": "$2a$10$gtfOK81pT9ppjOIem1PFTuWCnTnCtCa0jQiPd3UDSxU5BqFKdDhdG",
+      "isBlocked": false
+    }
+  ]
+}
