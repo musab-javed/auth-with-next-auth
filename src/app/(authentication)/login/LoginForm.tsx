@@ -26,6 +26,18 @@ export default function LoginForm() {
     console.log(result)
   }
 
+  async function onGoogleSignIn(e: MouseEvent) {
+    setLoading(true);
+    e.preventDefault();
+    console.log('called')
+    const result = await signIn("google");
+    setLoading(false)
+    console.log(result)
+
+    if(!result?.error) router.replace("/home")
+
+  }
+
   const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
@@ -53,12 +65,24 @@ export default function LoginForm() {
           value={password}
         />
         {!loading ? (
-          <button
+          <div>
+            <button
             className="mb-2 mt-4 block w-full rounded-2xl bg-orange-400 py-2 font-semibold text-white"
-            onClick={(e) => onSubmit(e)}
+            onClick={(e) => onGoogleSignIn(e)}
           >
             Login
           </button>
+          <button
+            className="mb-2 mt-4 block w-full rounded-2xl bg-orange-400 py-2 font-semibold text-white"
+            onClick={(e) => {
+              e.preventDefault();
+              return signIn('google');
+            }}
+          >
+            Continue with Google
+          </button>
+          </div>
+          
         ) : (
           <div className="flex items-center justify-center mb-2">
             <Loader />

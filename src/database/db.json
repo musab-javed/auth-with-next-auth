@@ -13,6 +13,13 @@
       "email": "musab@email.com",
       "password": "$2a$10$gtfOK81pT9ppjOIem1PFTuWCnTnCtCa0jQiPd3UDSxU5BqFKdDhdG",
       "isBlocked": false
+    },
+    {
+      "_id": "91gzmgK^KP%s0%p",
+      "name": "Musab Javed ",
+      "email": "musab@ambeego.com",
+      "password": "$2a$10$gtfOK81pT9ppjOIem1PFTuWCnTnCtCa0jQiPd3UDSxU5BqFKdDhdG",
+      "isBlocked": false
     }
   ]
 }

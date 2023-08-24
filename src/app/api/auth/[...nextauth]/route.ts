@@ -1,9 +1,8 @@
-import NextAuth, { AuthOptions, Awaitable } from "next-auth";
+import NextAuth, { AuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import bcryptjs from "bcryptjs";
+import GoogleProvider from "next-auth/providers/google";
+
 import { findOne } from "@/helpers/dbHelper";
-import { User } from "@/types/user";
-import { auth } from "firebase-functions";
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -19,7 +18,7 @@ export const authOptions: AuthOptions = {
             password: credentials?.password,
           }),
         });
-        if(res.status != 200) return null;
+        if (res.status != 200) return null;
         const user = await res.json();
         if (!user) return null;
         return user;
@@ -37,14 +36,30 @@ export const authOptions: AuthOptions = {
         },
       },
     }),
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID as string,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+    }),
   ],
-  session: {
-    strategy: "jwt",
-  },
-  secret: process.env.auth_secret,
+  // secret: process.env.auth_secret,
   debug: true,
   pages: {
     signIn: "/auth/login",
+  },
+  callbacks: {
+    async session({ session: session }) {
+      return session;
+    },
+    async signIn({ profile }) {
+      try {
+        console.log(profile);
+        const user = findOne({ email: "musab@ambeego.com" });
+        return true;
+      } catch (error) {
+        console.log(error);
+        return false;
+      }
+    },
   },
 };
 
